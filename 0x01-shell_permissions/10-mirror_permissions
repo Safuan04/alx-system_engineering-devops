@@ -1,2 +1,2 @@
 #!/bin/bash
-chmod rfile hello olleh
+chmod --reference=olleh hello
