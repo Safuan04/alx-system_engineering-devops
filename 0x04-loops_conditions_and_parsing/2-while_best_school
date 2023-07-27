@@ -2,10 +2,9 @@
 # This script is displaying "Best School" 10 times using while loop
 
 i=1
-school="Best school"
 
 while [ $i -le 10 ]
 do
-    echo "$school"
-    i=$(( i+1 ))
+    echo "Best School"
+    ((i++))
 done
