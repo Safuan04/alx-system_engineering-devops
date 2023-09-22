@@ -1,5 +1,6 @@
 # Puppet program that kills a process named killmenow.
 
-exec {'pkill killmenow':
-  path => '/usr/bin:/usr/sbin:/bin'
+exec {'killmenow':
+  command => 'pkill killmenow'
+  path    => '/usr/bin:/usr/sbin:/bin'
 }
