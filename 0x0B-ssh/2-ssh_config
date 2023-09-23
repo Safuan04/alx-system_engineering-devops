@@ -1,0 +1,8 @@
+# Sharing my SSH client configuration
+
+Host 387844-web-01
+    HostName 54.162.95.185
+    User ubuntu
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
+    PubkeyAuthentication yes
