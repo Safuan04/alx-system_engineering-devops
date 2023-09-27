@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Bash script that installs nginx and adds content to index.html
+
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo service nginx start
+sudo ufw allow 'Nginx HTTP'
+sudo sh -c 'echo "Hello World!" > /var/www/html/index.html'
+sudo service nginx restart
