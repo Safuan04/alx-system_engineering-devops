@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Bash script that configures a brand new Ubuntu machine with
+# two web servers that cantains a custom header "X-Served-By"
+
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo service nginx start
+sudo sed -i '/http {/a \    add_header X-Served-By $HOSTNAME;' /etc/nginx/nginx.conf
+sudo service nginx restart
