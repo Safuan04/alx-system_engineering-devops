@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Bash script configure HAproxy on my lb-01 server
+
+sudo apt-get -y update
+sudo apt-get -y install --no-install-recommends software-properties-common
+sudo add-apt-repository -y ppa:vbernat/haproxy-2.0
+sudo apt-get update
+sudo apt-get -y install haproxy=2.0.\*
+sudo service haproxy start
+sudo sed -i "/errorfile 504 \/etc\/haproxy\/errors\/504.http/a\
+        frontend haproxy_balancer\n\
+        bind *:80\n\
+        mode http\n\
+        default_backend my-backend\n" /etc/haproxy/haproxy.cfg
+sudo sed -i "/default_backend my-backend/a\
+        backend my-backend\n\
+        balance roundrobin\n\
+        server 378424-web-01 54.89.182.156:80 check\n\
+        server 378424-web-02 34.239.248.185:80 check\n" /etc/haproxy/haproxy.cfg
+sudo service haproxy restart
