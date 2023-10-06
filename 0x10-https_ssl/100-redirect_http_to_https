@@ -37,7 +37,7 @@ defaults
 frontend haproxy_balancer
         bind *:80
         mode http
-        bind *:443 ssl crt /etc/haproxy/certs/www.elbadel.tech.pem
+        bind *:443 ssl crt /etc/haproxy/certs/www.safuan04.tech.pem
         # Redirect if HTTPS is not used
         redirect scheme https if !{ ssl_fc }
         default_backend my-backend
