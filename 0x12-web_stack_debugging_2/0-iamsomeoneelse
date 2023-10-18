@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Bash script that switches to another user
+sudo -u "$1" whoami
+
