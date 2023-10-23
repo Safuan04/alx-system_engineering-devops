@@ -1,24 +1,22 @@
 #!/usr/bin/python3
-"""Python script to export data in Json format"""
+"""Importing necessary modules"""
 import json
 import requests
 
 
 if __name__ == "__main__":
-    # Retrieve data of all employees
+
     all_empls = requests.get("https://jsonplaceholder.typicode.com/users")
     all_empls_json = all_empls.json()
     employee_dict = {}
 
     for employee in all_empls_json:
-        # Retrieve the ide and username of the employee
         USER_ID = employee.get('id')
         user_url = f"https://jsonplaceholder.typicode.com/users/{USER_ID}"
         req_user = requests.get(user_url)
         json_user = req_user.json()
         USERNAME = json_user.get('username')
 
-        # Retrieve the todo items associated with the employee
         todos_url = 'https://jsonplaceholder.typicode.com/todos'
         todos_params = {'userId': USER_ID}
         todos_req = requests.get(todos_url, params=todos_params)
