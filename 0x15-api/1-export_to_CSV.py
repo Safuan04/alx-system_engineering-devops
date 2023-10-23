@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""Importing necessary modules"""
+"""Impoering necesary modules"""
+import csv
 import requests
 from sys import argv
 
@@ -18,16 +19,12 @@ if __name__ == "__main__":
     todos_req = requests.get(todos_url, params=todos_params)
     todos_json = todos_req.json()
 
-    NUMBER_OF_DONE_TASKS = 0
-    TOTAL_NUMBER_OF_TASKS = 0
+    USER_ID = employee_id
+    USERNAME = json_user.get('username')
     for task in todos_json:
-        if task['completed'] is True:
-            NUMBER_OF_DONE_TASKS += 1
-        TOTAL_NUMBER_OF_TASKS += 1
-
-    print(f"Employee {EMPLOYEE_NAME} is done with tasks"
-          f"({NUMBER_OF_DONE_TASKS}/{TOTAL_NUMBER_OF_TASKS}):")
-    for task in todos_json:
-        if task['completed'] is True:
-            TASK_TITLE = f"\t {task['title']}"
-            print(TASK_TITLE)
+        TASK_COMPLETED_STATUS = task['completed']
+        TASK_TITLE = task['title']
+        data_to_add = [USER_ID, USERNAME, TASK_COMPLETED_STATUS, TASK_TITLE]
+        with open(f'{USER_ID}.csv', mode='a', newline='') as CSVfile:
+            writer = csv.writer(CSVfile, delimiter=',', quoting=csv.QUOTE_ALL)
+            writer.writerow(data_to_add)
